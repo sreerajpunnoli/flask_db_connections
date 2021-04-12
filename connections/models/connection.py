@@ -21,3 +21,6 @@ class Connection(Model, CRUDMixin, CreatedUpdatedMixin):
     from_person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
     to_person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
     connection_type = db.Column(db.Enum(ConnectionType), nullable=False)
+
+    from_person = db.relationship("Person", backref="Connection.from_person_id")
+    to_person = db.relationship("Person", backref="Connection.to_person_id")
