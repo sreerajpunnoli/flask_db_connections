@@ -11,18 +11,23 @@ class Validate:
                                                              connection_type=connection.connection_type).first()
         if existing_connection:
             raise exceptions.ValidationError("Connection already exist.")
-            
-            
+    
     def validate_modify_connection(self, connection_dict):
-        print(2)
         if 'connection_type' not in connection_dict:
-            print(3)
             raise exceptions.ValidationError("missing connection_type")
     
         conn_type = connection_dict['connection_type']
         if not ConnectionType.has_value(conn_type):
-            print(4)
             raise exceptions.ValidationError(f"Invalid enum member {conn_type}")
+    
+    def validate_arguments(self, request_arguments, key):
+        if key not in request_arguments:
+            raise exceptions.ValidationError(f"Missing parameter {key}")
+    
+    def validate_model_object(self, model_object, id):
+        if not model_object:
+            raise exceptions.ValidationError(f"Invalid model with key {id}")
+    
             
 # Singleton object
 validate = Validate()
