@@ -25,11 +25,18 @@ class PersonSchema(BaseModelSchema):
     class Meta:
         model = Person
 
+# Custom validator
+def must_not_be_blank(data):
+    if not data:
+        raise exceptions.ValidationError("Data not provided.")
+
 
 class ConnectionSchema(BaseModelSchema):
     from_person_id = fields.Integer()
     to_person_id = fields.Integer()
     connection_type = EnumField(ConnectionType)
+    from_person = fields.Nested(PersonSchema, validate=must_not_be_blank)
+    to_person = fields.Nested(PersonSchema, validate=must_not_be_blank)
     
     @validates_schema
     def validate_connection_type(self, connection):
