@@ -84,11 +84,7 @@ def test_create_connection_duplicate_validation(db, testapp):
     assert 'description' in res.json
     assert 'Input failed validation.' == res.json['description']
     assert 'errors' in res.json
-    assert '_schema' in res.json['errors']
-    error_messages = res.json['errors']['_schema']
+    error_messages = res.json['errors']
     assert len(error_messages) == 1
     assert 'Connection already exist.' == error_messages[0]
-    
-    
-    
-    
+
