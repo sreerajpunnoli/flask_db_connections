@@ -12,6 +12,9 @@ class Person(Model, CRUDMixin, CreatedUpdatedMixin):
 #    connections = db.relationship('Connection', foreign_keys='Connection.from_person_id')
     
     def mutual_friends(self, target):
+        if not target:
+            return []
+        
         friend_connections = Connection.query.filter_by(from_person_id=self.id, \
                                     connection_type=ConnectionType.friend).distinct().all()
         friends = {Person.query.get(connection.to_person_id) for connection in friend_connections}

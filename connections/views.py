@@ -25,6 +25,23 @@ def create_person(person):
     return PersonSchema().jsonify(person), HTTPStatus.CREATED
 
 
+@blueprint.route('/people/<int:id>/mutual_friends', methods=['GET'])
+def get_mutual_friends(id):
+    validate.validate_arguments(request.args, 'target_id')
+    target_id = request.args.get('target_id')
+    
+    person = Person.query.get(id)
+    validate.validate_model_object(person, id)
+    
+    target_person = Person.query.get(target_id)
+    validate.validate_model_object(target_person, target_id)
+    
+    mutual_friends = person.mutual_friends(target_person)
+    
+    person_schema = PersonSchema(many=True)
+    return person_schema.jsonify(mutual_friends), HTTPStatus.OK
+
+
 @blueprint.route('/connections', methods=['GET'])
 def get_connections():
     connection_schema = ConnectionSchema(many=True)
