@@ -14,6 +14,10 @@ class ConnectionType(enum.Enum):
     sister = 'sister'
     friend = 'friend'
     coworker = 'coworker'
+    
+    @classmethod
+    def has_value(self, value):
+        return value in self._value2member_map_
 
 
 class Connection(Model, CRUDMixin, CreatedUpdatedMixin):
