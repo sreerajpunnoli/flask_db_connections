@@ -26,29 +26,29 @@ A document that discusses the degrees of separation functionality
 	Returns the list of person objects
 
 ```json
-	[
-	  {
-	    "created_at": "2021-04-14T04:11:51+00:00", 
-	    "date_of_birth": "2010-02-02", 
-	    "email": "test1@test.com", 
-	    "first_name": "TestF1", 
-	    "id": 1, 
-	    "last_name": "TestF1", 
-	    "updated_at": "2021-04-14T04:11:51+00:00"
-	  },
-	  
-	  ....
+[
+  {
+    "created_at": "2021-04-14T04:11:51+00:00", 
+    "date_of_birth": "2010-02-02", 
+    "email": "test1@test.com", 
+    "first_name": "TestF1", 
+    "id": 1, 
+    "last_name": "TestF1", 
+    "updated_at": "2021-04-14T04:11:51+00:00"
+  },
+  
+  ....
 
-	  {
-	    "created_at": "2021-04-14T04:12:41+00:00", 
-	    "date_of_birth": "2000-01-01", 
-	    "email": "test2@test.com", 
-	    "first_name": "TestF2", 
-	    "id": 2, 
-	    "last_name": "TestF2", 
-	    "updated_at": "2021-04-14T04:12:41+00:00"
-	  }
-	]
+  {
+    "created_at": "2021-04-14T04:12:41+00:00", 
+    "date_of_birth": "2000-01-01", 
+    "email": "test2@test.com", 
+    "first_name": "TestF2", 
+    "id": 2, 
+    "last_name": "TestF2", 
+    "updated_at": "2021-04-14T04:12:41+00:00"
+  }
+]
 ```
 
 ### Design Concept
