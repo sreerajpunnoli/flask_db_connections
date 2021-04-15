@@ -7,7 +7,7 @@ A document that discusses the degrees of separation functionality
 
 1. Given a valid person id and an integer x representing "degrees of separation" it should return a list of people connected within x degrees of separation to that person.
 
-2. Should be based on the “six degrees of separation” concept ([link text itself]: https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon).
+2. Should be based on the “six degrees of separation” concept (https://en.wikipedia.org/wiki/Six_Degrees_of_Kevin_Bacon).
 
 
 ### Input Fields
@@ -18,7 +18,7 @@ A document that discusses the degrees of separation functionality
 
 ### Endpoint
 
-	[link text itself]: /people/<people_id>/degree/<degree>
+	/people/<people_id>/degree/<degree>
 
 
 ### Response
