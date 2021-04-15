@@ -24,9 +24,9 @@ class Validate:
         if key not in request_arguments:
             raise exceptions.ValidationError(f"Missing parameter {key}")
     
-    def validate_model_object(self, model_object, id):
-        if not model_object:
-            raise exceptions.ValidationError(f"Invalid model with key {id}")
+    def validate_person_object(self, person_object, id):
+        if not person_object:
+            raise exceptions.ValidationError(f"Invalid person with key {id}")
     
             
 # Singleton object

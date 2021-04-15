@@ -31,10 +31,10 @@ def get_mutual_friends(id):
     target_id = request.args.get('target_id')
     
     person = Person.query.get(id)
-    validate.validate_model_object(person, id)
+    validate.validate_person_object(person, id)
     
     target_person = Person.query.get(target_id)
-    validate.validate_model_object(target_person, target_id)
+    validate.validate_person_object(target_person, target_id)
     
     mutual_friends = person.mutual_friends(target_person)
     
