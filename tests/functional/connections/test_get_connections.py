@@ -15,11 +15,11 @@ EXPECTED_FIELDS = [
 def test_get_connections(db, testapp):
     ConnectionFactory.create_batch(10)
     db.session.commit()
-    
+
     res = testapp.get('/connections')
-    
+
     assert res.status_code == HTTPStatus.OK
-    
+
     assert len(res.json) == 10
     for connection in res.json:
         for field in EXPECTED_FIELDS:

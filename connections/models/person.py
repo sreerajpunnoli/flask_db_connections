@@ -9,20 +9,19 @@ class Person(Model, CRUDMixin, CreatedUpdatedMixin):
     email = db.Column(db.String(145), unique=True, nullable=False)
     date_of_birth = db.Column(db.Date, nullable=False)
 
-#    connections = db.relationship('Connection', foreign_keys='Connection.from_person_id')
-    
     def mutual_friends(self, target):
         if not target:
             return []
-        
-        friend_connections = Connection.query.filter_by(from_person_id=self.id, \
-                                    connection_type=ConnectionType.friend).distinct().all()
+
+        friend_connections = Connection.query.filter_by(connection_type=ConnectionType.friend,
+                                                        from_person_id=self.id).distinct().all()
         friends = {Person.query.get(connection.to_person_id) for connection in friend_connections}
 
-        target_connections = Connection.query.filter_by(from_person_id=target.id, \
-                                    connection_type=ConnectionType.friend).distinct().all()
-        target_friends = {Person.query.get(connection.to_person_id) for connection in target_connections}
-        
+        target_connections = Connection.query.filter_by(connection_type=ConnectionType.friend,
+                                                        from_person_id=target.id).distinct().all()
+        target_friends = {Person.query.get(connection.to_person_id) for connection in
+                          target_connections}
+
         mutual_friends = friends.intersection(target_friends)
-        
+
         return mutual_friends

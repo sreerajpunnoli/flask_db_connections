@@ -51,5 +51,5 @@ def test_create_person_validations(db, testapp, person_payload, field, value, er
     assert res.status_code == HTTPStatus.BAD_REQUEST
     assert res.json['description'] == 'Input failed validation.'
     errors = res.json['errors']
-    
+
     assert error_message in errors[field]

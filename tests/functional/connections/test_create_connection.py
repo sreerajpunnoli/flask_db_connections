@@ -75,16 +75,15 @@ def test_create_connection_duplicate_validation(db, testapp):
     assert connection.from_person_id == child.id
     assert connection.to_person_id == parent.id
     assert connection.connection_type.value == 'son'
-    
+
     # Try to create connection with same payload once again
     res = testapp.post('/connections', json=payload)
-    
+
     assert res.status_code == HTTPStatus.BAD_REQUEST
-    
+
     assert 'description' in res.json
     assert 'Input failed validation.' == res.json['description']
     assert 'errors' in res.json
     error_messages = res.json['errors']
     assert len(error_messages) == 1
     assert 'Connection already exist.' == error_messages[0]
-
